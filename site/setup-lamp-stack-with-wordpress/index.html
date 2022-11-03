@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Riley Albiston">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Setup LAMP Stack with Wordpress - Adventures in Linux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup LAMP Stack with Wordpress";
+    var mkdocs_page_input_path = "setup-lamp-stack-with-wordpress.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Adventures in Linux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup LAMP Stack with Wordpress</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#before-you-get-started">Before You Get Started</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-apache">Install Apache</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-php">Install PHP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-mysql">Install MySQL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-phpmyadmin-optional-hasent-worked-so-far">Installing phpMyAdmin (optional) - Hasen't worked so far</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#manage-services">Manage Services</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adjusting-firewall-rules">Adjusting Firewall Rules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-setup">Test Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-wordpress">Install Wordpress</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-nginx-postesql-flask-app-on-linux/">Setup Nginx, PostgrSQL and Python/Flask App on Linux</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-software-install/">Setup Software Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-install-and-setup/">Nginx Install and Inital Setup</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-setup-subdomains/">Nginx Setup Subdomains</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-bash-script/">Nginx Bash Script</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../databases-postgres-on-ubuntu/">Databases PostgrSQL on Ubuntu</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../databases-sql-server-on-ubuntu/">Databases SQL Server on Ubuntu</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../misc-linux/">Misc Linux Stuff</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Adventures in Linux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Setup LAMP Stack with Wordpress</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="setup-lamp-stack-with-wordpress">Setup LAMP stack with Wordpress</h1>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04">How To Install Linux, Apache, MySQL, PHP (LAMP) stack on Ubuntu 20.04</a></p>
+<p><a href="https://tecadmin.net/install-lamp-ubuntu-20-04/">How to Install Apache, MySQL &amp; PHP on Ubuntu 20.04</a></p>
+<p><strong>Wordpress</strong></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-20-04-with-a-lamp-stack">How To Install WordPress on Ubuntu 20.04 with a LAMP Stack</a></p>
+<p><a href="https://hands-on.cloud/how-to-install-wordpress-on-ubuntu-linux/">How to install WordPress on Ubuntu Linux</a></p>
+<h2 id="before-you-get-started">Before You Get Started</h2>
+<ul>
+<li>I'll using Ubuntu desktop. Will also work with Ubuntu server. Would likely work on most Ubuntu derivitive distro.</li>
+</ul>
+<h2 id="install-apache">Install Apache</h2>
+<p>Now upgrade current packages to latest version.</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt upgrade 
+</code></pre>
+<p>or</p>
+<pre><code>sudo apt update 
+
+sudo apt upgrade
+</code></pre>
+<p>Then to install the Apache2 package:</p>
+<pre><code>sudo apt install apache2 
+</code></pre>
+<p>In a browser visit:</p>
+<p><a href="127.0.0.1">127.0.0.1</a></p>
+<p>To check the Apache2 service status:</p>
+<pre><code>sudo systemctl status apache2 
+</code></pre>
+<h2 id="install-php">Install PHP</h2>
+<p>If you’re using Apache as your web server, run the following commands to install PHP and Apache PHP module:</p>
+<pre><code>sudo apt update
+sudo apt install php libapache2-mod-php
+</code></pre>
+<p>Once the packages are installed, restart Apache for the PHP module to get loaded:</p>
+<pre><code>sudo systemctl restart apache2
+</code></pre>
+<h2 id="install-mysql">Install MySQL</h2>
+<p>The default Ubuntu 20.04 apt repositories contains MySQL server 8.0. Finally, install mysql-server packages for the MySQL database. Also, install the php-mysql package to use MySQL support using PHP. Use the following command to install it.</p>
+<pre><code>sudo apt install mysql-server php-mysql 
+</code></pre>
+<p>Once the installation is complete, the MySQL server should be started automatically. You can quickly check its current status via systemd:</p>
+<pre><code>sudo service mysql status
+</code></pre>
+<p>Log into MySQL</p>
+<pre><code>sudo mysql
+</code></pre>
+<p>List databases</p>
+<pre><code>SHOW DATABASES;
+</code></pre>
+<p>Exit mysql</p>
+<pre><code>\q
+</code></pre>
+<p>When the installation is finished, it’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system. Start the interactive script by running:</p>
+<pre><code>sudo mysql_secure_installation
+</code></pre>
+<p>This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.</p>
+<pre><code>Securing the MySQL server deployment.
+
+Connecting to MySQL using a blank password.
+
+VALIDATE PASSWORD COMPONENT can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD component? 
+
+Press y|Y for Yes, any other key for No: y
+
+There are three levels of password validation policy:
+
+LOW    Length &gt;= 8
+MEDIUM Length &gt;= 8, numeric, mixed case, and special characters
+STRONG Length &gt;= 8, numeric, mixed case, special characters and dictionary  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+Please set the password for root here.
+
+New password:
+
+Re-enter new password:
+
+Estimated strength of the password: 100
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+</code></pre>
+<h2 id="installing-phpmyadmin-optional-hasent-worked-so-far">Installing phpMyAdmin (optional) - Hasen't worked so far</h2>
+<p>phpMyAdmin provides a user friendly web interface to manage MySQL database server. You can install phpMyAdmin on Ubuntu 20.04 by executing the following command:</p>
+<pre><code>sudo apt install phpmyadmin 
+</code></pre>
+<p>The installation process will prompt to select web server to configure. Select “Apache” as web server to run phpMyAdmin.</p>
+<p>Very Important!!!!!!!!!!!!!!!!!!!!</p>
+<pre><code>When the first prompt appears, apache2 is highlighted, but not selected. If you do not hit &quot;SPACE&quot; to select Apache, the installer will not move the necessary files during installation. Hit &quot;SPACE&quot;, &quot;TAB&quot;, and then &quot;ENTER&quot; to select Apache.
+</code></pre>
+<p>Next, this will prompt to create database for phpMyAdmin and prompt for the administrative user access details. Complete all steps to finish phpMyAdmin installation.</p>
+<h2 id="manage-services">Manage Services</h2>
+<p><strong>Start, Stop and Restart Apache on Ubuntu</strong></p>
+<p>To start the Apache service, execute the following command:</p>
+<pre><code>sudo systemctl start apache2
+</code></pre>
+<p>To stop the Apache service, execute the following command:</p>
+<pre><code>sudo systemctl stop apache2
+</code></pre>
+<p>Whenever you make changes to the Apache configuration, you need to restart the server processes. To restart the Apache service, run:</p>
+<pre><code>sudo systemctl restart apache2
+</code></pre>
+<h2 id="adjusting-firewall-rules">Adjusting Firewall Rules</h2>
+<h2 id="test-setup">Test Setup</h2>
+<p>After completing all setup. Let’s create a info.php file website document root with following content.</p>
+<pre><code>sudo echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt; /var/www/html/info.php 
+</code></pre>
+<p>Now access this file in web browser. You will see the screen like below with all details of PHP on server.</p>
+<p><a href="127.0.0.1/info.php">127.0.0.1/info.php</a></p>
+<h2 id="install-wordpress">Install Wordpress</h2>
+<p><a href="https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview">Install and configure WordPress</a></p>
+<p>a</p>
+<p>a</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../setup-nginx-postesql-flask-app-on-linux/" class="btn btn-neutral float-right" title="Setup Nginx, PostgrSQL and Python/Flask App on Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../setup-nginx-postesql-flask-app-on-linux/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

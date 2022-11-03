@@ -1,0 +1,22 @@
+site_name: Adventures in Linux
+theme: readthedocs
+site_author: Riley Albiston
+
+#site_url: https://example.com/foo/
+
+nav:
+    - Home: 'index.md'
+    - Setup LAMP Stack with Wordpress: 'setup-lamp-stack-with-wordpress.md'
+    - Setup Nginx, PostgrSQL and Python/Flask App on Linux: 'setup-nginx-postesql-flask-app-on-linux.md'
+    - Setup Software Installation: 'setup-software-install.md'
+    - Nginx Install and Inital Setup: 'nginx-install-and-setup.md'
+    - Nginx Setup Subdomains: 'nginx-setup-subdomains.md'
+    - Nginx Bash Script: 'nginx-bash-script.md'
+    - Databases PostgrSQL on Ubuntu:  'databases-postgres-on-ubuntu.md'
+    - Databases SQL Server on Ubuntu: 'databases-sql-server-on-ubuntu.md'
+    - Misc Linux Stuff: 'misc-linux.md'
+
+
+
+#repo_url: https://github.com/rileyalbiston/
+

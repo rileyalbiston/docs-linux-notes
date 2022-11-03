@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Riley Albiston">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Databases SQL Server on Ubuntu - Adventures in Linux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Databases SQL Server on Ubuntu";
+    var mkdocs_page_input_path = "databases-sql-server-on-ubuntu.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Adventures in Linux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-lamp-stack-with-wordpress/">Setup LAMP Stack with Wordpress</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-nginx-postesql-flask-app-on-linux/">Setup Nginx, PostgrSQL and Python/Flask App on Linux</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-software-install/">Setup Software Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-install-and-setup/">Nginx Install and Inital Setup</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-setup-subdomains/">Nginx Setup Subdomains</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../nginx-bash-script/">Nginx Bash Script</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../databases-postgres-on-ubuntu/">Databases PostgrSQL on Ubuntu</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Databases SQL Server on Ubuntu</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-sql-server">Install SQL Server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-the-sql-server-command-line-tools">Install the SQL Server command-line tools</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connect-locally">Connect locally</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connect-over-local-network">Connect over local network</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../misc-linux/">Misc Linux Stuff</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Adventures in Linux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Databases SQL Server on Ubuntu</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="databases-sql-server-on-ubuntu">Databases: SQL Server on  Ubuntu</h1>
+<p><a href="https://www.sqlshack.com/how-to-install-sql-server-on-ubuntu/">SQLShack - How to install SQL Server on Ubuntu</a></p>
+<p><a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15">MS Docs install SQL Server</a></p>
+<h2 id="install-sql-server">Install SQL Server</h2>
+<p>1.</p>
+<pre><code class="language-bash">wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+</code></pre>
+<p>2.</p>
+<pre><code class="language-bash">sudo add-apt-repository &quot;$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)&quot;
+</code></pre>
+<p>3.</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y mssql-server
+</code></pre>
+<p>4.</p>
+<pre><code class="language-bash">sudo /opt/mssql/bin/mssql-conf setup
+</code></pre>
+<p>Edition: Developer</p>
+<p>SA password: Password123   (Dell Opitplex with Linux Mint)</p>
+<p>5.</p>
+<pre><code class="language-bash">systemctl status mssql-server --no-pager
+</code></pre>
+<ol>
+<li>If you plan to connect remotely, you might also need to open the SQL Server TCP port (default 1433) on your firewall.</li>
+</ol>
+<p>Check firewall:</p>
+<pre><code class="language-bash">sudo ufw status verbose
+</code></pre>
+<p>Open port:</p>
+<pre><code class="language-bash">sudo ufw allow 1433/tcp
+</code></pre>
+<h2 id="install-the-sql-server-command-line-tools">Install the SQL Server command-line tools</h2>
+<p>1.</p>
+<pre><code class="language-bash">sudo apt-get update 
+sudo apt install curl
+</code></pre>
+<p>2.</p>
+<pre><code class="language-bash">curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+</code></pre>
+<p>3.</p>
+<pre><code class="language-bash">sudo apt-get update 
+sudo apt-get install mssql-tools unixodbc-dev
+</code></pre>
+<p>4.</p>
+<pre><code class="language-bash">echo 'export PATH=&quot;$PATH:/opt/mssql-tools/bin&quot;' &gt;&gt; ~/.bash_profile
+</code></pre>
+<p>aaa</p>
+<pre><code class="language-bash">echo 'export PATH=&quot;$PATH:/opt/mssql-tools/bin&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h2 id="connect-locally">Connect locally</h2>
+<p>aa</p>
+<pre><code class="language-bash">sqlcmd -S localhost -U sa -P '&lt;YourPassword&gt;'
+</code></pre>
+<h2 id="connect-over-local-network">Connect over local network</h2>
+<p>Check for ip address:</p>
+<pre><code class="language-bash">hostname -I
+</code></pre>
+<p>IP: 192.168.1.221   (Dell Opitplex with Linux Mint)</p>
+<p><strong>Can also connect through SSMS from Windows 10</strong></p>
+<p>Connect from remote computer (running Windows 10):</p>
+<p>sqlcmd -S [Servername where SQL Installed], [Port Number ] \ [SQL Server instance name] -U [Username] -P [Password]</p>
+<pre><code class="language-bash">sqlcmd -S 192.168.1.221,1433\MSSQLSERVER -U sa -P Password123
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../misc-linux/" class="btn btn-neutral float-right" title="Misc Linux Stuff">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../databases-postgres-on-ubuntu/" class="btn btn-neutral" title="Databases PostgrSQL on Ubuntu"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../databases-postgres-on-ubuntu/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../misc-linux/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
