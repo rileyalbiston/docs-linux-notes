@@ -114,7 +114,7 @@ Check for ip address:
 hostname -I
 ```
 
-IP: 192.168.1.221   (Dell Opitplex with Linux Mint)
+
 
 
 
@@ -125,6 +125,6 @@ Connect from remote computer (running Windows 10):
 sqlcmd -S [Servername where SQL Installed], [Port Number ] \ [SQL Server instance name] -U [Username] -P [Password]
 
 ```bash
-sqlcmd -S 192.168.1.221,1433\MSSQLSERVER -U sa -P Password123
+sqlcmd -S 192.168.0.11,1433\MSSQLSERVER -U sa -P Password123
 ```
 

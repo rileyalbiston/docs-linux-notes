@@ -6,7 +6,7 @@ Link to this repo:
 
 https://github.com/rileyalbiston/docs-linux-notes/
 
-Requirements:
+## Requirements:
 
 Python 3
 
@@ -66,7 +66,13 @@ mkdocs gh-deploy
 
 
 
+## Other Notes:
 
+* For all articles add standardised meta data for each article
+  * date
+  * operating system
+  * os version
+  * tags (software list)
 
 
 

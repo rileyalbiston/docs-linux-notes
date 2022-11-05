@@ -9,7 +9,7 @@
   <meta name="author" content="Riley Albiston">
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Misc Linux Stuff - Adventures in Linux</title>
+  <title>Apache Airflow Install - Adventures in Linux</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Misc Linux Stuff";
-    var mkdocs_page_input_path = "misc-linux.md";
+    var mkdocs_page_name = "Apache Airflow Install";
+    var mkdocs_page_input_path = "apache-airflow-install.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -50,8 +50,18 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../apache-airflow-install/">Apache Airflow Install</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Apache Airflow Install</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#option-1-install-airflow-using-the-constraints-file">Option 1: Install Airflow using the constraints file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#option-2-install-airflow-with-pip">Option 2: Install Airflow with pip</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-airflow-in-the-browser">Access Airflow in the browser</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <ul>
@@ -106,16 +116,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../setup-ssh/">SSH install</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Misc Linux Stuff</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#linux-certs">Linux Certs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#linux-upskill-challenge">Linux Upskill Challenge</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#software-to-install">Software to Install</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../misc-linux/">Misc Linux Stuff</a>
                     </li>
                 </ul>
       </div>
@@ -139,7 +141,7 @@
     
       
     
-    <li>Misc Linux Stuff</li>
+    <li>Apache Airflow Install</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -151,31 +153,68 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="misc-linux-stuff">Misc Linux Stuff</h1>
-<p>Collection of notes that don't belong anywhere else.</p>
-<h2 id="linux-certs">Linux Certs</h2>
-<p>Probably won't do any of these certs, but they can be good for guiding my learning.</p>
-<p><a href="https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/">Linux Foundation Certified System Administrator (LFCS)</a></p>
-<p><a href="https://www.comptia.org/certifications/linux">CompTIA Linux+</a></p>
-<p><a href="https://www.lpi.org/our-certifications/lpic-1-overview">Linux Professional Institute LPIC-1</a></p>
-<h2 id="linux-upskill-challenge">Linux Upskill Challenge</h2>
-<p><a href="https://linuxupskillchallenge.org/">Linux Upskill Challenge</a></p>
-<p><a href="https://github.com/snori74/linuxupskillchallenge">Linux Upskill Challenge GitHub</a></p>
-<h2 id="software-to-install">Software to Install</h2>
-<ul>
-<li>Sublime Text</li>
-<li>KeePassXC</li>
-<li>OBS Studio</li>
-<li>Git</li>
-<li>PostresSQL</li>
-<li>SQL Server</li>
-<li>SQLite</li>
-<li>SQLite Browser</li>
-<li>Mozilla Thunderbird</li>
-<li>Mozilla Firefox</li>
-<li>Epic Private Browser</li>
-<li>Texts (markdown)</li>
-</ul>
+                <h1 id="apache-airflow-install-on-linux-mint">Apache Airflow install on Linux Mint</h1>
+<p>| <strong>Date:</strong> 05 Oct 2022 |
+| <strong>OS:</strong> Linux Mint 20.2 |</p>
+<p><a href="https://airflow.apache.org/docs/apache-airflow/stable/start.html">Airflow Quick Start</a></p>
+<p><a href="https://airflow.readthedocs.io/en/1.10.14/installation.html">Read the Docs</a></p>
+<p><a href="https://unixcop.com/how-to-install-apache-airflow-on-ubuntu-20/">https://unixcop.com/how-to-install-apache-airflow-on-ubuntu-20/</a></p>
+<h2 id="getting-started">Getting started</h2>
+<p>Run apt update and upgrade before getting started</p>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt upgrade -y
+</code></pre>
+<p>Airflow requires python so check what version is running</p>
+<pre><code class="language-bash">python3 -V
+</code></pre>
+<p>At the time I am running <code>Python 3.8.10</code></p>
+<p>Will need <code>pip</code> if it's not insralled.</p>
+<pre><code class="language-bash">sudo apt install python3-pip
+</code></pre>
+<p>Airflow needs a home. <code>~/airflow</code> is the default, but you can put it
+somewhere else if you prefer (optional)</p>
+<pre><code class="language-bash">export AIRFLOW_HOME=~/airflow
+</code></pre>
+<h2 id="option-1-install-airflow-using-the-constraints-file">Option 1: Install Airflow using the constraints file</h2>
+<pre><code class="language-bash">AIRFLOW_VERSION=2.4.0
+PYTHON_VERSION=&quot;$(python --version | cut -d &quot; &quot; -f 2 | cut -d &quot;.&quot; -f 1-2)&quot;
+</code></pre>
+<p>For example: 3.7</p>
+<pre><code class="language-bash">CONSTRAINT_URL=&quot;https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt&quot; 
+</code></pre>
+<p>For example: </p>
+<pre><code class="language-bash">https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.7.txt
+</code></pre>
+<pre><code class="language-bash">pip install &quot;apache-airflow==${AIRFLOW_VERSION}&quot; --constraint &quot;${CONSTRAINT_URL}&quot;
+</code></pre>
+<p>The Standalone command will initialise the database, make a user, and start all components for you.</p>
+<pre><code class="language-bash">airflow standalone
+</code></pre>
+<p>Visit <code>localhost:8080</code> in the browser and use the admin account details shown on the terminal to login.</p>
+<p>Enable the example_bash_operator dag in the home page</p>
+<h2 id="option-2-install-airflow-with-pip">Option 2: Install Airflow with pip</h2>
+<pre><code class="language-bash">pip install 'apache-airflow[devel]'
+</code></pre>
+<pre><code class="language-bash">pip install &quot;apache-airflow[postgres]==2.4.0&quot; --constraint &quot;https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.8.txt&quot;
+</code></pre>
+<p>Once installed check Airflow version</p>
+<pre><code class="language-bash">airflow version
+</code></pre>
+<p>airflow initdbb &lt; - command has been removed, use:</p>
+<pre><code class="language-bash">airflow db init
+airflow db upgrade
+</code></pre>
+<p>Got loads of errors. Had to create a user first </p>
+<pre><code class="language-bash">airflow users create --username admin --firstname admin --lastname admin --role Admin --email admin@admin.com
+</code></pre>
+<p>Then set the password</p>
+<p>password: 336514</p>
+<h2 id="access-airflow-in-the-browser">Access Airflow in the browser</h2>
+<p>Starts apache airflow server by running the command below</p>
+<pre><code class="language-bash">airflow webserver -p 8081
+</code></pre>
+<p>My Airflow is running on port <code>8081</code> because NiFi is running on port <code>8080</code>.</p>
+<p>Type the url below to open Airflow in a browser</p>
+<p><a href="http://localhost:8081/home">http://localhost:8081/home</a></p>
               
             </div>
           </div>
@@ -183,8 +222,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../apache-nifi-install/" class="btn btn-neutral float-right" title="Apache NiFi Install">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../setup-ssh/" class="btn btn-neutral" title="SSH install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -210,8 +251,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../setup-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../apache-nifi-install/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
