@@ -9,7 +9,7 @@
   <meta name="author" content="Riley Albiston">
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Misc Linux Stuff - Adventures in Linux</title>
+  <title>Nextcloud Install - Adventures in Linux</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Misc Linux Stuff";
-    var mkdocs_page_input_path = "misc-linux.md";
+    var mkdocs_page_name = "Nextcloud Install";
+    var mkdocs_page_input_path = "nextcloud-install.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -62,8 +62,12 @@
                     <li class="toctree-l1"><a class="reference internal" href="../jellyfin-install/">Jellyfin Install</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../nextcloud-install/">Nextcloud Install</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Nextcloud Install</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#testing-stuff-here">Testing stuff here</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <ul>
@@ -106,16 +110,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../setup-ssh/">SSH install</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Misc Linux Stuff</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#linux-certs">Linux Certs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#linux-upskill-challenge">Linux Upskill Challenge</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#software-to-install">Software to Install</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../misc-linux/">Misc Linux Stuff</a>
                     </li>
                 </ul>
       </div>
@@ -139,7 +135,7 @@
     
       
     
-    <li>Misc Linux Stuff</li>
+    <li>Nextcloud Install</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -151,31 +147,87 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="misc-linux-stuff">Misc Linux Stuff</h1>
-<p>Collection of notes that don't belong anywhere else.</p>
-<h2 id="linux-certs">Linux Certs</h2>
-<p>Probably won't do any of these certs, but they can be good for guiding my learning.</p>
-<p><a href="https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/">Linux Foundation Certified System Administrator (LFCS)</a></p>
-<p><a href="https://www.comptia.org/certifications/linux">CompTIA Linux+</a></p>
-<p><a href="https://www.lpi.org/our-certifications/lpic-1-overview">Linux Professional Institute LPIC-1</a></p>
-<h2 id="linux-upskill-challenge">Linux Upskill Challenge</h2>
-<p><a href="https://linuxupskillchallenge.org/">Linux Upskill Challenge</a></p>
-<p><a href="https://github.com/snori74/linuxupskillchallenge">Linux Upskill Challenge GitHub</a></p>
-<h2 id="software-to-install">Software to Install</h2>
-<ul>
-<li>Sublime Text</li>
-<li>KeePassXC</li>
-<li>OBS Studio</li>
-<li>Git</li>
-<li>PostresSQL</li>
-<li>SQL Server</li>
-<li>SQLite</li>
-<li>SQLite Browser</li>
-<li>Mozilla Thunderbird</li>
-<li>Mozilla Firefox</li>
-<li>Epic Private Browser</li>
-<li>Texts (markdown)</li>
-</ul>
+                <h1 id="nextcloud-install-on-linux-mint">Nextcloud install on Linux Mint</h1>
+<p><strong>Date:</strong> 05 Oct 2022
+<strong>OS:</strong> Linux Mint 20.2</p>
+<p>https://docs.nextcloud.com/server/latest/admin_manual/installation/example_ubuntu.html
+https://linuxiac.com/install-nextcloud-on-ubuntu/</p>
+<ol>
+<li>Get the system ready</li>
+</ol>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade
+</code></pre>
+<ol>
+<li>Install dependencies </li>
+</ol>
+<pre><code class="language-bash">sudo apt install apache2 mariadb-server libapache2-mod-php php-gd php-mysql \
+php-curl php-mbstring php-intl php-gmp php-bcmath php-xml php-imagick php-zip
+</code></pre>
+<p>Check verion of required software</p>
+<pre><code class="language-bash">mysql -V
+apache2 -version
+php -version
+</code></pre>
+<ol>
+<li>Setup database
+3.1. To start the MySQL command line mode</li>
+</ol>
+<pre><code class="language-bash">sudo mysql
+or
+sudo mysql -u root -p
+</code></pre>
+<p>3.2. Setup database and user</p>
+<pre><code class="language-bash">CREATE USER 'nextcloud-user'@'localhost' IDENTIFIED BY '336514';
+CREATE DATABASE IF NOT EXISTS nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud-user'@'localhost';
+FLUSH PRIVILEGES;
+</code></pre>
+<p>Confirm can connect with the new user</p>
+<pre><code class="language-bash">mysql -u nextcloud-user -p
+</code></pre>
+<p>3.3. Exit MySQL command line</p>
+<pre><code class="language-bash">quit;
+</code></pre>
+<ol>
+<li>Download and install Nextcloud
+https://nextcloud.com/install/#instructions-server</li>
+</ol>
+<pre><code class="language-bash">wget https://download.nextcloud.com/server/releases/nextcloud-25.0.0.zip
+</code></pre>
+<ol>
+<li>Unzip and  create data directory</li>
+</ol>
+<pre><code class="language-bash">sudo unzip nextcloud-25.0.0.zip -d /var/www/html/
+sudo mkdir /var/www/html/nextcloud/data
+sudo chown -R www-data:www-data /var/www/html/nextcloud/
+</code></pre>
+<ol>
+<li>Configure Nextcloud</li>
+</ol>
+<p><code>http://server-ip/nextcloud/</code></p>
+<p><a href="http://127.0.0.1/nextcloud/">http://127.0.0.1/nextcloud/</a></p>
+<ol>
+<li>Setup Admin user
+un: admin
+pw: admin</li>
+</ol>
+<hr />
+<h2 id="testing-stuff-here">Testing stuff here</h2>
+<pre><code class="language-bash">Alias /nextcloud &quot;/var/www/html/nextcloud/&quot;
+
+&lt;Directory /var/www/html/nextcloud/&gt;
+  Require all granted
+  AllowOverride All
+  Options FollowSymLinks MultiViews
+
+  &lt;IfModule mod_dav.c&gt;
+    Dav off
+  &lt;/IfModule&gt;
+&lt;/Directory&gt;
+</code></pre>
+<p>a2ensite nextcloud.conf</p>
+<p>systemctl reload apache2</p>
+<p>Had to stop nginx because it was on port 80. Should look at running them on different ports.</p>
               
             </div>
           </div>
@@ -183,8 +235,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../setup-lamp-stack-with-wordpress/" class="btn btn-neutral float-right" title="Setup LAMP Stack with Wordpress">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../setup-ssh/" class="btn btn-neutral" title="SSH install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../jellyfin-install/" class="btn btn-neutral" title="Jellyfin Install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -210,8 +264,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../setup-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../jellyfin-install/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../setup-lamp-stack-with-wordpress/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

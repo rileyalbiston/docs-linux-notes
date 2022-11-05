@@ -9,7 +9,7 @@
   <meta name="author" content="Riley Albiston">
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Misc Linux Stuff - Adventures in Linux</title>
+  <title>SSH install - Adventures in Linux</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Misc Linux Stuff";
-    var mkdocs_page_input_path = "misc-linux.md";
+    var mkdocs_page_name = "SSH install";
+    var mkdocs_page_input_path = "setup-ssh.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -102,20 +102,14 @@
                     <li class="toctree-l1"><a class="reference internal" href="../sql-server-install-and-setup/">SQL Server Install and Setup</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-ssh/">SSH install</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">SSH install</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Misc Linux Stuff</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#linux-certs">Linux Certs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#linux-upskill-challenge">Linux Upskill Challenge</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#software-to-install">Software to Install</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../misc-linux/">Misc Linux Stuff</a>
                     </li>
                 </ul>
       </div>
@@ -139,7 +133,7 @@
     
       
     
-    <li>Misc Linux Stuff</li>
+    <li>SSH install</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -151,31 +145,31 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="misc-linux-stuff">Misc Linux Stuff</h1>
-<p>Collection of notes that don't belong anywhere else.</p>
-<h2 id="linux-certs">Linux Certs</h2>
-<p>Probably won't do any of these certs, but they can be good for guiding my learning.</p>
-<p><a href="https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/">Linux Foundation Certified System Administrator (LFCS)</a></p>
-<p><a href="https://www.comptia.org/certifications/linux">CompTIA Linux+</a></p>
-<p><a href="https://www.lpi.org/our-certifications/lpic-1-overview">Linux Professional Institute LPIC-1</a></p>
-<h2 id="linux-upskill-challenge">Linux Upskill Challenge</h2>
-<p><a href="https://linuxupskillchallenge.org/">Linux Upskill Challenge</a></p>
-<p><a href="https://github.com/snori74/linuxupskillchallenge">Linux Upskill Challenge GitHub</a></p>
-<h2 id="software-to-install">Software to Install</h2>
-<ul>
-<li>Sublime Text</li>
-<li>KeePassXC</li>
-<li>OBS Studio</li>
-<li>Git</li>
-<li>PostresSQL</li>
-<li>SQL Server</li>
-<li>SQLite</li>
-<li>SQLite Browser</li>
-<li>Mozilla Thunderbird</li>
-<li>Mozilla Firefox</li>
-<li>Epic Private Browser</li>
-<li>Texts (markdown)</li>
-</ul>
+                <h1 id="ssh-install-on-linux-mint">SSH install on Linux Mint</h1>
+<p>| <strong>Date:</strong> 05 Oct 2022 |
+| <strong>OS:</strong> Linux Mint 20.2 |</p>
+<p><a href="https://linuxhint.com/enable-ssh-linux-mint/">https://linuxhint.com/enable-ssh-linux-mint/</a></p>
+<p>Install</p>
+<pre><code class="language-bash">sudo apt install openssh-server
+</code></pre>
+<p>Check if SSH is enabled</p>
+<pre><code class="language-bash">sudo systemctl is-enabled ssh
+</code></pre>
+<p>If SSH is not enable, enable it</p>
+<pre><code class="language-bash">sudo systemctl enable ssh
+</code></pre>
+<p>And start SSH</p>
+<pre><code class="language-bash">sudo systemctl start ssh
+</code></pre>
+<p>Allow SSH through the firewall so it can be accessed over the local network</p>
+<pre><code class="language-bash">sudo ufw allow ssh
+</code></pre>
+<p>Reload the firewall so the new settings will take effect</p>
+<pre><code class="language-bash">sudo ufw reload
+</code></pre>
+<p>Now check the status of the firewall to make sure the changes have been made</p>
+<pre><code class="language-bash">sudo ufw status verbose
+</code></pre>
               
             </div>
           </div>
@@ -183,8 +177,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../misc-linux/" class="btn btn-neutral float-right" title="Misc Linux Stuff">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../setup-ssh/" class="btn btn-neutral" title="SSH install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../sql-server-install-and-setup/" class="btn btn-neutral" title="SQL Server Install and Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -210,8 +206,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../setup-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../sql-server-install-and-setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../misc-linux/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
