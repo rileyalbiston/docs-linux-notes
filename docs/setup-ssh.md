@@ -5,7 +5,13 @@
 
 [https://linuxhint.com/enable-ssh-linux-mint/](https://linuxhint.com/enable-ssh-linux-mint/)
 
-Install
+Check version:
+
+```bash
+ssh -V
+```
+
+If not installed, install with:
 
 ```bash
 sudo apt install openssh-server
