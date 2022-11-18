@@ -79,11 +79,11 @@ Enable the example_bash_operator dag in the home page
 ## Option 2: Install Airflow with pip
 
 ```bash
-pip install 'apache-airflow[devel]'
+sudo pip install 'apache-airflow[devel]'
 ```
 
 ```bash
-pip install "apache-airflow[postgres]==2.4.0" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.8.txt"
+sudo pip install "apache-airflow[postgres]==2.4.0" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.8.txt"
 ```
 
 Once installed check Airflow version
@@ -123,3 +123,16 @@ My Airflow is running on port `8081` because NiFi is running on port `8080`.
 Type the url below to open Airflow in a browser
 
 [http://localhost:8081/home](http://localhost:8081/home)
+
+
+
+
+
+### Check path
+
+pip will most likely install Airflow to:
+
+```bash
+/usr/local/bin 
+```
+

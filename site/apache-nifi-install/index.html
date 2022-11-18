@@ -61,6 +61,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#open-in-browser">Open in browser</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-nifi-to-work-over-local-network">Getting NiFi to work over local network</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -169,6 +171,43 @@
 </code></pre>
 <h2 id="open-in-browser">Open in browser</h2>
 <p><a href="http://localhost:8080/nifi/">http://localhost:8080/nifi/</a></p>
+<h2 id="getting-nifi-to-work-over-local-network">Getting NiFi to work over local network</h2>
+<p>By default NiFi was only running using localhost.</p>
+<p>To access it over the local network it needs to be set to access using the host machines IP address.</p>
+<p>This setting is changes in the <code>nifi.properites</code> file. </p>
+<p>It is located in:</p>
+<pre><code class="language-bash">opt/nifi-1.13.2/conf/
+</code></pre>
+<p>Change:</p>
+<pre><code># web properties #
+#############################################
+
+# For security, NiFi will present the UI on 127.0.0.1 and only be accessible through this loopback interface.
+# Be aware that changing these properties may affect how your instance can be accessed without any restriction.
+# We recommend configuring HTTPS instead. The administrators guide provides instructions on how to do this.
+
+nifi.web.http.host=127.0.0.1
+nifi.web.http.port=8080
+nifi.web.http.network.interface.default=
+</code></pre>
+<p>To:</p>
+<pre><code># web properties #
+#############################################
+
+# For security, NiFi will present the UI on 127.0.0.1 and only be accessible through this loopback interface.
+# Be aware that changing these properties may affect how your instance can be accessed without any restriction.
+# We recommend configuring HTTPS instead. The administrators guide provides instructions on how to do this.
+
+nifi.web.http.host=192.168.1.221
+nifi.web.http.port=8080
+nifi.web.http.network.interface.default=
+</code></pre>
+<p><strong>Allow through firewall</strong></p>
+<pre><code class="language-bash">sudo ufw allow 8080
+</code></pre>
+<p>then</p>
+<pre><code class="language-bash">sudo ufw reload
+</code></pre>
               
             </div>
           </div>

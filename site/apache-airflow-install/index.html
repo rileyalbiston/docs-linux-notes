@@ -60,6 +60,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#option-2-install-airflow-with-pip">Option 2: Install Airflow with pip</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#access-airflow-in-the-browser">Access Airflow in the browser</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#check-path">Check path</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -192,9 +196,9 @@ PYTHON_VERSION=&quot;$(python --version | cut -d &quot; &quot; -f 2 | cut -d &qu
 <p>Visit <code>localhost:8080</code> in the browser and use the admin account details shown on the terminal to login.</p>
 <p>Enable the example_bash_operator dag in the home page</p>
 <h2 id="option-2-install-airflow-with-pip">Option 2: Install Airflow with pip</h2>
-<pre><code class="language-bash">pip install 'apache-airflow[devel]'
+<pre><code class="language-bash">sudo pip install 'apache-airflow[devel]'
 </code></pre>
-<pre><code class="language-bash">pip install &quot;apache-airflow[postgres]==2.4.0&quot; --constraint &quot;https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.8.txt&quot;
+<pre><code class="language-bash">sudo pip install &quot;apache-airflow[postgres]==2.4.0&quot; --constraint &quot;https://raw.githubusercontent.com/apache/airflow/constraints-2.4.0/constraints-3.8.txt&quot;
 </code></pre>
 <p>Once installed check Airflow version</p>
 <pre><code class="language-bash">airflow version
@@ -215,6 +219,10 @@ airflow db upgrade
 <p>My Airflow is running on port <code>8081</code> because NiFi is running on port <code>8080</code>.</p>
 <p>Type the url below to open Airflow in a browser</p>
 <p><a href="http://localhost:8081/home">http://localhost:8081/home</a></p>
+<h3 id="check-path">Check path</h3>
+<p>pip will most likely install Airflow to:</p>
+<pre><code class="language-bash">/usr/local/bin 
+</code></pre>
               
             </div>
           </div>
